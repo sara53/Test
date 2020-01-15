@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>drag&drop</title>
+    <style>
+        div {
+            background-color: lightblue;
+            width: 80%;
+            margin: 50px auto;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="from">
+        <img src="./coco/1.jpg">
+        <img src="./coco/2.png">
+        <img src="./coco/3.jpg">
+        <img src="./coco/4.jpg">
+    </div>
+    <div id="to">
+
+    </div>
+    <script>
+        /*
+        containers (from,to)
+        item (data)
+        1-dragstart         (item)
+        2-dragover          (containers)
+        3-dragleave         (from container)
+        4-drageenter        (to container)
+        5-dragend           (item)
+        6-drop              (to container)
+        */
+        //load elements
+        var item = document.querySelector('img');
+        var toContainer = document.querySelector('#to');
+        var fromContainer = document.querySelector('#from');
+
+        fromContainer.addEventListener('mousedown', function (e) {
+
+
+           
+          //  e.preventDefault();
+          //  console.log(e.target);
+            item = e.target;
+
+
+        })
+
+        toContainer.addEventListener('mousedown', function (e) {
+
+
+            item = e.target;
+
+
+
+        })
+
+
+        item.addEventListener('dragstart', function (e) {
+
+        })
+
+        fromContainer.addEventListener('dragover', function (e) {
+
+
+      //      if(e.srcElement!=toContainer)
+            e.preventDefault()
+            this.style.backgroundColor = "red";
+
+
+
+            
+            
+        })
+
+        toContainer.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            this.style.backgroundColor = "red";
+        })
+        fromContainer.addEventListener('dragleave', function () {
+            //   e.preventDefault();
+            this.style.backgroundColor = "blue";
+        })
+        toContainer.addEventListener('dragenter', function (e) {
+            //    e.preventDefault()
+            this.style.backgroundColor = "green"
+        })
+
+        toContainer.addEventListener('drop', function (e) {
+
+            if (toContainer.innerHTML.toString().trim() == "!!!!!!!!!!!!!!")
+                toContainer.innerHTML = "";
+            toContainer.innerHTML += item.outerHTML;
+            item.remove()
+            if (fromContainer.innerHTML.toString().trim() == "")
+                fromContainer.innerHTML = "!!!!!!!!!!!!!!";
+
+
+        })
+
+        fromContainer.addEventListener('drop', function (e) {
+
+            if (fromContainer.innerHTML.toString().trim() == "!!!!!!!!!!!!!!")
+                fromContainer.innerHTML = "";
+            fromContainer.innerHTML += item.outerHTML;
+            item.remove()
+            if (toContainer.innerHTML.toString().trim() == "")
+                toContainer.innerHTML = "!!!!!!!!!!!!!!";
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
